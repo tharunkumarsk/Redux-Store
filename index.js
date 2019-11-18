@@ -14,12 +14,12 @@ function createStore(reducer) {
         }
     }
 
-    const dispatch =(action) =>{
-        state = reducer(state,action)
-        listners.forEach((listener) => listner())
-    }
+    const dispatch = (action) => {
+        state = reducer(state, action)
+        listners.forEach((listner) => listner())
+      }
     /**
-     * Samwe as above arrow function not to confuse 
+     * Same as above arrow function not to confuse 
      */
 
     /*var subscribe = function subscribe(listener) {
@@ -48,3 +48,29 @@ function todos(state=[],action){
     return state
 
 }
+
+const store = createStore(todos)
+
+store.subscribe(() => {
+    console.log("New state value", store.getState())
+})
+
+store.dispatch({
+    type:"ADD_TODO",
+    todo:{
+        id:0,
+        name:"learn angular",
+        completed:false
+
+    }
+})
+
+store.dispatch({
+    type:"ADD_TODO",
+    todo:{
+        id:1,
+        name:"Hello world java",
+        completed:true
+
+    }
+})
