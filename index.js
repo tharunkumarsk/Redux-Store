@@ -74,6 +74,12 @@ function goals(state=[],action){
     
 }
 
+function app (state = {},action){
+    return {
+        todos:todos(state.todos,action),
+        goals:goals(state.goals,action)
+    }
+}   
 //const store = createStore(goals)
 
 /*Output if you pass goal as reducer 
@@ -83,17 +89,26 @@ New state value [ 'this week full angular' ]
 New state value [ 'this week full angular' ]
 New state value [ 'this week full angular' ]*/
 
-const store = createStore(todos)
+//const store = createStore(todos)
 
 /** Output if you pass todos as reducer 
  * New state value []
  *   New state value [ { id: 0, name: 'learn angular', completed: false } ]
- * New state value [ { id: 0, name: 'learn angular', completed: false },
-  { id: 1, name: 'hello world java', completed: false } ]
-  New state value [ { id: 1, name: 'hello world java', completed: false } ]
-  New state value [ { id: 1, name: 'hello world java', completed: true } ]
+ * New state value [ { id: 0, name: 'learn angular', completed: false },{ id: 1, name: 'hello world java', completed: false } ]
+ * New state value [ { id: 1, name: 'hello world java', completed: false } ]
+ * New state value [ { id: 1, name: 'hello world java', completed: true } ]
+ */
+const store = createStore(app)
+
+/** Output if you pass app as reducer - means a root reducer whichis combination of all reducers in the app 
+ * New state value { todos: [], goals: [ 'this week full angular' ] }
+ * New state value { todos: [ { id: 0, name: 'learn angular', completed: false } ],goals: [ 'this week full angular' ] }
+ * New state value { todos: [ { id: 0, name: 'learn angular', completed: false },{ id: 1, name: 'hello world java', completed: false } ],goals: [ 'this week full angular' ] }
+ * New state value { todos: [ { id: 1, name: 'hello world java', completed: false } ],goals: [ 'this week full angular' ] }
+ * New state value { todos: [ { id: 1, name: 'hello world java', completed: true } ],goals: [ 'this week full angular' ] }
  */
 
+ 
 store.subscribe(() => {
    console.log("New state value", store.getState())
 })
