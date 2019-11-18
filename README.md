@@ -9,3 +9,10 @@ Just start some bacics of Redux store
 - Get the state tree
 - listen to the state changes
 - And updating the state
+
+## What are Pure Functions?
+### Pure functions are integral to how state in Redux applications is updated. By definition, pure functions:
+
+- Return the same result if the same arguments are passed in
+- Depend solely on the arguments passed into them
+- Do not produce side effects, such as API requests and I/O operations
