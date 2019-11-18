@@ -1,0 +1,25 @@
+{
+  "name": "redux-store",
+  "version": "1.0.0",
+  "description": "The Store contains the state tree and provides ways to interact with the state tree.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server  &&  webpack --config webpack.config.js",
+    "build-prod": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tharunkumarsk/Redux-Store.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tharunkumarsk/Redux-Store/issues"
+  },
+  "homepage": "https://github.com/tharunkumarsk/Redux-Store#readme",
+  "devDependencies": {
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "webpack": "^4.41.2"
+  }
+}
