@@ -1,14 +1,7 @@
-function todos(state=[],action){
-    if(action.type === "ADD_TODO"){
-        return state.concat([action.todo])
-    }
-    return state
 
-}
+// Library Code
 
-
-
-function createStore() {
+function createStore(reducer) {
 
     let state;
     let listners = []
@@ -19,6 +12,11 @@ function createStore() {
         return () => {
             listeners = listeners.filter((l) => l !== listener)
         }
+    }
+
+    const dispatch =(action) =>{
+        state = reducer(state,action)
+        listners.forEach((listener) => listner())
     }
     /**
      * Samwe as above arrow function not to confuse 
@@ -32,12 +30,21 @@ function createStore() {
             });
         };
     };*/
-
-
     return {
         getState,
-        subscribe
+        subscribe,
+        dispatch
     }
 
+
+}
+
+
+//app code
+function todos(state=[],action){
+    if(action.type === "ADD_TODO"){
+        return state.concat([action.todo])
+    }
+    return state
 
 }
