@@ -59,11 +59,48 @@ function todos(state=[],action){
     }
     
 }
+function goals(state=[],action){
+    switch(action.type){
+        case "ADD_GOAL":
+        return state.concat([action.goal])
+        
+        case "REMOVE_GOAL":
+        return state.filter((goal) => goal.id !== action.id)
+
+        default :
+        return state
+
+    }
+    
+}
+
+//const store = createStore(goals)
+
+/*Output if you pass goal as reducer 
+New state value [ 'this week full angular' ]
+New state value [ 'this week full angular' ]
+New state value [ 'this week full angular' ]
+New state value [ 'this week full angular' ]
+New state value [ 'this week full angular' ]*/
 
 const store = createStore(todos)
 
+/** Output if you pass todos as reducer 
+ * New state value []
+ *   New state value [ { id: 0, name: 'learn angular', completed: false } ]
+ * New state value [ { id: 0, name: 'learn angular', completed: false },
+  { id: 1, name: 'hello world java', completed: false } ]
+  New state value [ { id: 1, name: 'hello world java', completed: false } ]
+  New state value [ { id: 1, name: 'hello world java', completed: true } ]
+ */
+
 store.subscribe(() => {
    console.log("New state value", store.getState())
+})
+
+store.dispatch({
+    type:"ADD_GOAL",
+    goal:"this week full angular"
 })
 
 store.dispatch({
