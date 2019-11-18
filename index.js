@@ -1,3 +1,11 @@
+const constants = 
+    { 
+        ADD_TODO :'ADD_TODO',
+        REMOVE_TODO:'REMOVE_TODO',
+        TOGGLE_TODO:"TOGGLE_TODO",
+        ADD_GOAL:"ADD_GOAL",
+        REMOVE_GOAL:"REMOVE_GOAL"
+    };
 
 // Library Code
 
@@ -43,13 +51,13 @@ function createStore(reducer) {
 //app code
 function todos(state=[],action){
     switch(action.type){
-        case "ADD_TODO":
+        case constants.ADD_TODO:
         return state.concat([action.todo])
         
-        case "REMOVE_TODO":
+        case constants.REMOVE_TODO:
         return state.filter((todo) => todo.id !== action.todo.id)
         
-        case "TOGGLE_TODO":
+        case constants.TOGGLE_TODO:
         return state.map((todo) => todo.id !== action.todo.id ? todo:
         Object.assign({},todo,{completed : !action.todo.completed})
         )
@@ -61,10 +69,10 @@ function todos(state=[],action){
 }
 function goals(state=[],action){
     switch(action.type){
-        case "ADD_GOAL":
+        case constants.ADD_GOAL:
         return state.concat([action.goal])
         
-        case "REMOVE_GOAL":
+        case constants.REMOVE_GOAL:
         return state.filter((goal) => goal.id !== action.id)
 
         default :
@@ -114,12 +122,12 @@ store.subscribe(() => {
 })
 
 store.dispatch({
-    type:"ADD_GOAL",
+    type:constants.ADD_GOAL,
     goal:"this week full angular"
 })
 
 store.dispatch({
-    type:"ADD_TODO",
+    type:constants.ADD_TODO,
     todo:{
         id:0,
         name:"learn angular",
@@ -128,7 +136,7 @@ store.dispatch({
     }
 })
 store.dispatch({
-    type:"ADD_TODO",
+    type:constants.ADD_TODO,
     todo:{
         id:1,
         name:"hello world java",
@@ -138,14 +146,14 @@ store.dispatch({
 })
 
 store.dispatch({
-    type:"REMOVE_TODO",
+    type:constants.REMOVE_TODO,
     todo:{
         id:0
     }
 })
 
 store.dispatch({
-    type:"TOGGLE_TODO",
+    type:constants.TOGGLE_TODO,
     todo:{
         id:1
 
