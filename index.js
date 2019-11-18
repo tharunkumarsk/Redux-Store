@@ -45,14 +45,23 @@ function todos(state=[],action){
     if(action.type === "ADD_TODO"){
         return state.concat([action.todo])
     }
-    return state
-
+    else if(action.type === "REMOVE_TODO"){
+        return state.filter((todo) => todo.id !== action.todo.id)
+    }
+    else if(action.type === "TOGGLE_TODO"){
+       return state.map((todo) => todo.id !== action.todo.id ? todo:
+       Object.assign({},todo,{completed : !action.todo.completed})
+       )
+    }
+    else{
+        return state
+    }
 }
 
 const store = createStore(todos)
 
 store.subscribe(() => {
-    console.log("New state value", store.getState())
+   console.log("New state value", store.getState())
 })
 
 store.dispatch({
@@ -64,13 +73,27 @@ store.dispatch({
 
     }
 })
-
 store.dispatch({
     type:"ADD_TODO",
     todo:{
         id:1,
-        name:"Hello world java",
-        completed:true
+        name:"hello world java",
+        completed:false
+
+    }
+})
+
+store.dispatch({
+    type:"REMOVE_TODO",
+    todo:{
+        id:0
+    }
+})
+
+store.dispatch({
+    type:"TOGGLE_TODO",
+    todo:{
+        id:1
 
     }
 })
