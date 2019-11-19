@@ -1,4 +1,6 @@
 import * as Redux from "redux";
+import React from 'react'
+import ReactDOM from 'react-dom'
 import "./index.css";
 
 function generateId() {
@@ -201,3 +203,56 @@ function addGoalToDOM(goal) {
 
   document.getElementById("goals").appendChild(node);
 }
+
+/**
+ * ------------------------------------------
+ */
+
+ const List = () => (
+    <ol id="todos">
+      <li></li>
+    </ol>
+ );
+
+ class Todos extends React.Component{
+  render(){
+         return (
+          <div>
+          <h1>Todo List</h1>
+          <form id="todoForm">
+          <input id="todo" type="text" placeholder="Add Todo" required />
+          </form>
+          <List/>
+          </div>
+          )
+          
+  }  
+}
+ class Goals extends React.Component{
+  render(){
+         return (
+          <div>
+          <h1>Goals</h1>
+          <form id="goalForm">
+          <input id="goal" type="text" placeholder="Add Goal" required />
+          </form>
+          <List/>
+          </div>
+          )
+          
+  }  
+}
+ class App extends React.Component{
+   render(){
+          return (<div>
+            <h1>React UI</h1>
+           <Todos/>
+           <Goals/>
+          </div>)
+   }  
+   
+ }
+ ReactDOM.render(
+   <App/>,
+    document.getElementById('App')
+ )
