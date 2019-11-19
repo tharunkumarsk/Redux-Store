@@ -1,43 +1,4 @@
 
-// Library Code
-
-function createStore(reducer) {
-
-    let state;
-    let listners = []
-
-    const getState = () => state;
-    const subscribe = (listner) => {
-        listners.push(listner);
-        return () => {
-            listeners = listeners.filter((l) => l !== listener)
-        }
-    }
-
-    const dispatch = (action) => {
-        state = reducer(state, action)
-        listners.forEach((listner) => listner())
-      }
-    /**
-     * Same as above arrow function not to confuse 
-     */
-
-    /*var subscribe = function subscribe(listener) {
-        listeners.push(listener);
-        return function () {
-            listeners = listeners.filter(function (l) {
-                return l !== listener;
-            });
-        };
-    };*/
-    return {
-        getState,
-        subscribe,
-        dispatch
-    }
-
-
-}
 function generateId () {
     return Math.random().toString(36).substring(2);
   }
@@ -108,7 +69,11 @@ function app (state = {}, action) {
     goals: goals(state.goals, action),
   }
 }
-const store = createStore(app)
+const store = Redux.createStore(Redux.combineReducers({
+  todos,
+  goals,
+}))
+
 store.subscribe(() => {
   const { goals, todos } = store.getState()
   document.getElementById('goals').innerHTML = ''
