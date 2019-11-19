@@ -16,6 +16,12 @@ body {
   .removeBtn {
     margin-left: 10px;
   }
+  .show {
+    display: block;
+  }
+  .hide {
+    display: none;
+  }
   
   @media screen and (max-width: 400px) {
     body {
