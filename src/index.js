@@ -2,7 +2,6 @@ import * as Redux from "redux";
 import React from 'react'
 import ReactDOM from 'react-dom'
 import "./index.css";
-import {generateId} from './GenerateID'
 import Todos from './Components/Todos'
 import Goals from './Components/Goals'
 import {Constants} from './constants'
@@ -24,6 +23,7 @@ function todos(state = [], action) {
       return state;
   }
 }
+
 function goals(state = [], action) {
   switch (action.type) {
     case Constants.ADD_GOAL:
@@ -34,6 +34,7 @@ function goals(state = [], action) {
       return state;
   }
 }
+
 //Middleware functions
 const checker = (store) => (next) => (action) => {
       if( action.type === Constants.ADD_TODO && action.todo.name.toLowerCase().includes('bitcoin') ){
@@ -70,27 +71,10 @@ const store = Redux.createStore(
   }),Redux.applyMiddleware(checker,logger)
 );
 
-
-
-
-
-
-
-
-
-
- 
-
-  
-
-
 /**
- * ------------------------------------------
+ * ----------------React code --------------------------
  */
 
- 
-
- 
  class App extends React.Component{
   componentDidMount () {
     const { store } = this.props
