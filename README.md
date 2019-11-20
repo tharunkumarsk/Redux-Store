@@ -16,3 +16,17 @@ Just start some bacics of Redux store
 - Return the same result if the same arguments are passed in
 - Depend solely on the arguments passed into them
 - Do not produce side effects, such as API requests and I/O operations
+
+## Installation
+
+Clone the repository,and use NPM to install the dependencies.
+
+npm install
+
+## To start the application
+
+- `npm start`
+
+This automatically opens the below URL with app running
+
+- [http://localhost:1234](http://localhost:1234)
