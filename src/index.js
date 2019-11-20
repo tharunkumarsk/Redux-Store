@@ -41,6 +41,14 @@ function goals(state = [], action) {
       return state;
   }
 }
+function loading(state = true, action) {
+  switch (action.type) {
+    case Constants.ADD_API_DATA:
+      return false;
+    default:
+      return state;
+  }
+}
 
 //Middleware functions
 const checker = (store) => (next) => (action) => {
@@ -74,7 +82,8 @@ const logger = (store) => (next) => (action) => {
 const store = Redux.createStore(
   Redux.combineReducers({
     todos,
-    goals
+    goals,
+    loading
   }),Redux.applyMiddleware(checker,logger)
 );
 
@@ -98,7 +107,11 @@ const store = Redux.createStore(
 
    render(){
     const { store } = this.props
-    const { todos, goals } = store.getState()
+    const { todos, goals,loading } = store.getState()
+
+    if (loading === true) {
+      return <h3>Loading...</h3>;
+    }
           return (<div>
             <h1>React UI</h1>
            <Todos todos={todos} store ={store}/>
