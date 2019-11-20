@@ -7,6 +7,7 @@ import Goals from './Components/Goals'
 import {Constants} from './constants'
 import {addAPIData} from './Actions'
 import * as API from './API'
+import ReduxThunk from 'redux-thunk'
 
 
 // Reducers
@@ -84,7 +85,7 @@ const store = Redux.createStore(
     todos,
     goals,
     loading
-  }),Redux.applyMiddleware(checker,logger)
+  }),Redux.applyMiddleware(ReduxThunk,checker,logger)
 );
 
 /**

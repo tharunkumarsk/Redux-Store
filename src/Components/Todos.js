@@ -1,40 +1,22 @@
 import React from 'react'
 import List from './List'
-import {addTodoAction,removeTodoAction,toggleTodoAction} from '../Actions'
-import {generateId} from '../GenerateID'
-import * as API from '../API'
+import {handleDeleteTodo,handleAddTodo,handleToggleTodo} from '../Actions'
 
 class Todos extends React.Component{
     
     addTodoItem = (e) => {
         e.preventDefault()
-        return window.API.saveTodo(this.input.value)
-        .then((todo)=>{
-          this.props.store.dispatch(addTodoAction(todo))
-          this.input.value = ''
-        })
-        .catch(() =>{
-          alert("There is a problem ...Please try latter !")
-        })
+        this.props.store.dispatch(handleAddTodo(this.input.value))
+        this.input.value =''
       }
 
       removeItem = (todo) => {
-        this.props.store.dispatch(removeTodoAction(todo.id))
-        window.API.deleteTodo(todo.id)
-          .catch(() =>{
-            this.props.store.dispatch(addTodoAction(todo))
-            alert("There is an error occured ... Please try again !")
-          })
+        this.props.store.dispatch(handleDeleteTodo(todo))
       }
       
       toggleItem = (id,event) => {
         event.target.checked=!event.target.checked
-        this.props.store.dispatch(toggleTodoAction(id))
-        window.API.saveTodoToggle(id)
-        .catch(()=> {
-          this.props.store.dispatch(toggleTodoAction(id))
-          alert("There is an error occured ... Please try again !")
-        })
+        this.props.store.dispatch(handleToggleTodo(id))
       }
 
     render(){

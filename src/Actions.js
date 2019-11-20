@@ -38,5 +38,68 @@ function addAPIData(todos,goals) {
     goals
   };
 }
+ function handleDeleteGoal(goal){
+   return(dispatch) => {
+    dispatch(removeGoalAction(goal.id))
+        window.API.deleteGoal(goal.id)
+        .catch(() =>{
+          dispatch(addGoalAction(goal))
+          alert("There is an error occured ... Please try again !")
+        })
+   }
+ }
 
-export{addTodoAction,removeTodoAction,toggleTodoAction,addGoalAction,removeGoalAction,addAPIData}
+ function handleAddGoal(value){
+  return(dispatch) => {
+    return window.API.saveGoal(value)
+    .then((goal)=>{
+      dispatch(addGoalAction(goal))
+    })
+    .catch(() =>{
+      alert("There is a problem ...Please try latter !")
+    })
+  }
+}
+
+ function handleDeleteTodo(todo){
+   return(dispatch) => {
+    dispatch(removeTodoAction(todo.id))
+    window.API.deleteTodo(todo.id)
+      .catch(() =>{
+        dispatch(addTodoAction(todo))
+        alert("There is an error occured ... Please try again !")
+      })
+   }
+ }
+
+ function handleToggleTodo(id){
+   return(dispatch) => {
+    dispatch(toggleTodoAction(id))
+        window.API.saveTodoToggle(id)
+        .catch(()=> {
+          dispatch(toggleTodoAction(id))
+          alert("There is an error occured ... Please try again !")
+        })
+   }
+ }
+
+ function handleAddTodo(value){
+   return(dispatch) => {
+    return window.API.saveTodo(value)
+    .then((todo)=>{
+      dispatch(addTodoAction(todo))
+    })
+    .catch(() =>{
+      alert("There is a problem ...Please try latter !")
+    })
+   }
+ }
+
+export{
+  addAPIData,
+  handleDeleteTodo,
+  handleAddTodo,
+  handleToggleTodo,
+  handleDeleteGoal,
+  handleAddGoal
+}
