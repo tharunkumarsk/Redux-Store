@@ -25,7 +25,8 @@ class Todos extends React.Component{
           })
       }
       
-      toggleItem = (id) => {
+      toggleItem = (id,event) => {
+        event.target.checked=!event.target.checked
         this.props.store.dispatch(toggleTodoAction(id))
         window.API.saveTodoToggle(id)
         .catch(()=> {
