@@ -8,14 +8,16 @@ class Todos extends React.Component{
     
     addTodoItem = (e) => {
         e.preventDefault()
-        const name = this.input.value
-        this.input.value = ''
-        this.props.store.dispatch(addTodoAction({
-          id: generateId(),
-          name,
-          complete: false,
-        }))
+        return window.API.saveTodo(this.input.value)
+        .then((todo)=>{
+          this.props.store.dispatch(addTodoAction(todo))
+          this.input.value = ''
+        })
+        .catch(() =>{
+          alert("There is a problem ...Please try latter !")
+        })
       }
+
       removeItem = (todo) => {
         this.props.store.dispatch(removeTodoAction(todo.id))
         window.API.deleteTodo(todo.id)
