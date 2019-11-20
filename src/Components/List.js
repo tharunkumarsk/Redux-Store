@@ -5,8 +5,8 @@ const List = ({items,remove,toggle}) => (
   {items.map((item) => (
     <li key={item.id}>
     <label className={item.complete ? 'strike': null} >
-        <input className = {item.complete === undefined ? 'hide': null}type="checkbox"
-        onClick={() => toggle && toggle(item.id)}
+        <input className = {item.complete === undefined ? 'hide': null}type="checkbox" 
+        onClick={() => toggle && toggle(item.id,event)}
         />
         
         {item.name}

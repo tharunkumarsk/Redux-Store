@@ -5,6 +5,9 @@ import "./index.css";
 import Todos from './Components/Todos'
 import Goals from './Components/Goals'
 import {Constants} from './constants'
+import {addAPIData} from './Actions'
+import * as API from './API'
+
 
 // Reducers
 function todos(state = [], action) {
@@ -14,11 +17,13 @@ function todos(state = [], action) {
     case Constants.REMOVE_TODO:
       return state.filter(todo => todo.id !== action.id);
     case Constants.TOGGLE_TODO:
-      return state.map(todo =>
-        todo.id !== action.id
+        return state.map(todo =>
+          todo.id !== action.id
           ? todo
           : Object.assign({}, todo, { complete: !todo.complete })
-      );
+          );
+    case Constants.ADD_API_DATA:
+        return action.todos
     default:
       return state;
   }
@@ -30,6 +35,16 @@ function goals(state = [], action) {
       return state.concat([action.goal]);
     case Constants.REMOVE_GOAL:
       return state.filter(goal => goal.id !== action.id);
+    case Constants.ADD_API_DATA:
+      return action.goals
+    default:
+      return state;
+  }
+}
+function loading(state = true, action) {
+  switch (action.type) {
+    case Constants.ADD_API_DATA:
+      return false;
     default:
       return state;
   }
@@ -67,7 +82,8 @@ const logger = (store) => (next) => (action) => {
 const store = Redux.createStore(
   Redux.combineReducers({
     todos,
-    goals
+    goals,
+    loading
   }),Redux.applyMiddleware(checker,logger)
 );
 
@@ -78,12 +94,24 @@ const store = Redux.createStore(
  class App extends React.Component{
   componentDidMount () {
     const { store } = this.props
+    Promise.all([
+      window.API.fetchTodos(),
+      window.API.fetchGoals()
+    ]).then(([ todos, goals ]) => {
+      store.dispatch(addAPIData(todos,goals))
+    })
+
     store.subscribe(() => this.forceUpdate())
+   
   }
 
    render(){
     const { store } = this.props
-    const { todos, goals } = store.getState()
+    const { todos, goals,loading } = store.getState()
+
+    if (loading === true) {
+      return <h3>Loading...</h3>;
+    }
           return (<div>
             <h1>React UI</h1>
            <Todos todos={todos} store ={store}/>
