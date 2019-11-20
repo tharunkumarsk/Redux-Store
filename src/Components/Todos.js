@@ -2,6 +2,7 @@ import React from 'react'
 import List from './List'
 import {addTodoAction,removeTodoAction,toggleTodoAction} from '../Actions'
 import {generateId} from '../GenerateID'
+import * as API from '../API'
 
 class Todos extends React.Component{
     
@@ -17,10 +18,20 @@ class Todos extends React.Component{
       }
       removeItem = (todo) => {
         this.props.store.dispatch(removeTodoAction(todo.id))
+        window.API.deleteTodo(todo.id)
+          .catch(() =>{
+            this.props.store.dispatch(addTodoAction(todo))
+            alert("There is an error occured ... Please try again !")
+          })
       }
       
       toggleItem = (id) => {
         this.props.store.dispatch(toggleTodoAction(id))
+        window.API.saveTodoToggle(id)
+        .catch(()=> {
+          this.props.store.dispatch(toggleTodoAction(id))
+          alert("There is an error occured ... Please try again !")
+        })
       }
 
     render(){

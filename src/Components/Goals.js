@@ -2,6 +2,7 @@ import React from 'react'
 import List from './List'
 import {addGoalAction,removeGoalAction} from '../Actions'
 import {generateId} from '../GenerateID'
+import * as API from '../API'
 
 class Goals extends React.Component{
 
@@ -16,6 +17,11 @@ class Goals extends React.Component{
       }
       removeItem = (goal) => {
         this.props.store.dispatch(removeGoalAction(goal.id))
+        window.API.deleteGoal(goal.id)
+        .catch(() =>{
+          this.props.store.dispatch(addGoalAction(goal))
+          alert("There is an error occured ... Please try again !")
+        })
       }
     render(){
            return (
