@@ -1,6 +1,6 @@
 import React from 'react'
 import List from './List'
-import {handleDeleteTodo,handleAddTodo,handleToggleTodo} from '../Actions'
+import {handleDeleteTodo,handleAddTodo,handleToggleTodo} from '../ActionCreators'
 
 class Todos extends React.Component{
     

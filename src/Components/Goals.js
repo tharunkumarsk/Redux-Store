@@ -1,6 +1,6 @@
 import React from 'react'
 import List from './List'
-import {handleAddGoal,handleDeleteGoal} from '../Actions'
+import {handleAddGoal,handleDeleteGoal} from '../ActionCreators'
 import * as API from '../API'
 
 class Goals extends React.Component{

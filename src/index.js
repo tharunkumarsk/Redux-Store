@@ -5,7 +5,7 @@ import "./index.css";
 import Todos from './Components/Todos'
 import Goals from './Components/Goals'
 import {Constants} from './constants'
-import {addAPIData} from './Actions'
+import {addAPIData} from './ActionCreators'
 import * as API from './API'
 import ReduxThunk from 'redux-thunk'
 
