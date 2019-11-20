@@ -5,6 +5,7 @@ import "./index.css";
 import Todos from './Components/Todos'
 import Goals from './Components/Goals'
 import {Constants} from './constants'
+import * as API from './API'
 
 // Reducers
 function todos(state = [], action) {
@@ -78,7 +79,16 @@ const store = Redux.createStore(
  class App extends React.Component{
   componentDidMount () {
     const { store } = this.props
+    Promise.all([
+      window.API.fetchTodos(),
+      window.API.fetchGoals()
+    ]).then(([ todos, goals ]) => {
+      console.log('Todos', todos)
+      console.log('Goals', goals)
+    })
+
     store.subscribe(() => this.forceUpdate())
+   
   }
 
    render(){
