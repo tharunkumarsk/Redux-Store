@@ -31,5 +31,12 @@ function removeGoalAction(id) {
     id
   };
 }
+function addAPIData(todos,goals) {
+  return {
+    type: Constants.ADD_API_DATA,
+    todos,
+    goals
+  };
+}
 
-export{addTodoAction,removeTodoAction,toggleTodoAction,addGoalAction,removeGoalAction}
+export{addTodoAction,removeTodoAction,toggleTodoAction,addGoalAction,removeGoalAction,addAPIData}

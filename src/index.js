@@ -5,7 +5,9 @@ import "./index.css";
 import Todos from './Components/Todos'
 import Goals from './Components/Goals'
 import {Constants} from './constants'
+import {addAPIData} from './Actions'
 import * as API from './API'
+
 
 // Reducers
 function todos(state = [], action) {
@@ -15,11 +17,13 @@ function todos(state = [], action) {
     case Constants.REMOVE_TODO:
       return state.filter(todo => todo.id !== action.id);
     case Constants.TOGGLE_TODO:
-      return state.map(todo =>
-        todo.id !== action.id
+        return state.map(todo =>
+          todo.id !== action.id
           ? todo
           : Object.assign({}, todo, { complete: !todo.complete })
-      );
+          );
+    case Constants.ADD_API_DATA:
+        return action.todos
     default:
       return state;
   }
@@ -31,6 +35,8 @@ function goals(state = [], action) {
       return state.concat([action.goal]);
     case Constants.REMOVE_GOAL:
       return state.filter(goal => goal.id !== action.id);
+    case Constants.ADD_API_DATA:
+      return action.goals
     default:
       return state;
   }
@@ -83,8 +89,7 @@ const store = Redux.createStore(
       window.API.fetchTodos(),
       window.API.fetchGoals()
     ]).then(([ todos, goals ]) => {
-      console.log('Todos', todos)
-      console.log('Goals', goals)
+      store.dispatch(addAPIData(todos,goals))
     })
 
     store.subscribe(() => this.forceUpdate())
