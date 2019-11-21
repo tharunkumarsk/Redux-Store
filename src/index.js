@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import "./index.css";
 import * as API from './utils/API'
 import {store} from './Store/Store'
-import Provider from './Providers/Provider'
-import ConnectedApp from './Connects/ConnectedApp'
+import Provider from './Context-API/Provider'
+import ConnectedApp from './Connected-Components/ConnectedApp'
  
 
  ReactDOM.render(
