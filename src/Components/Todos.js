@@ -6,18 +6,18 @@ class Todos extends React.Component{
     
     addTodoItem = (e) => {
         e.preventDefault()
-        this.props.store.dispatch(handleAddTodo(
+        this.props.dispatch(handleAddTodo(
           this.input.value,
           ()=> this.input.value =''))
       }
 
       removeItem = (todo) => {
-        this.props.store.dispatch(handleDeleteTodo(todo))
+        this.props.dispatch(handleDeleteTodo(todo))
       }
       
       toggleItem = (id,event) => {
         event.target.checked=!event.target.checked
-        this.props.store.dispatch(handleToggleTodo(id))
+        this.props.dispatch(handleToggleTodo(id))
       }
 
     render(){

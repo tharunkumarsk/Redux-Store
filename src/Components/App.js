@@ -1,8 +1,7 @@
 import React from 'react'
-import Todos from './Todos'
-import Goals from './Goals'
 import {handleInitialData} from '../ActionCreators/AppActionCreators'
-import {connect} from 'react-redux'
+import ConnectedTodos from '../Connected-Components/ConnectedTodos';
+import ConnectedGoals from '../Connected-Components/ConnectedGoals';
 
 class App extends React.Component{
     componentDidMount () {
@@ -23,8 +22,8 @@ class App extends React.Component{
       }
             return (<div>
               <h1>React UI</h1>
-             <Todos todos={todos} store ={store}/>
-             <Goals goals={goals} store ={store}/>
+              <ConnectedTodos></ConnectedTodos>
+              <ConnectedGoals></ConnectedGoals>
             </div>)
      }  
      
