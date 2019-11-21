@@ -2,15 +2,15 @@ import React, { Component,createContext } from 'react'
 
 
 
-export const Context = createContext()
+export const Context = React.createContext()
 
-export default class Provider extends Component {
- 
-    render() {
-        return (
-          <Context.Provider value={this.props.store}>
-            {this.props.children}
-          </Context.Provider>
-        )
-    }
+class Provider extends React.Component {
+  render () {
+    return (
+      <Context.Provider value={this.props.store}>
+        {this.props.children}
+      </Context.Provider>
+    )
+  }
 }
+export default Provider

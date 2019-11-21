@@ -1,8 +1,8 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import Todos from './Todos'
 import Goals from './Goals'
 import {handleInitialData} from '../ActionCreators/AppActionCreators'
+import {connect} from 'react-redux'
 
 class App extends React.Component{
     componentDidMount () {
