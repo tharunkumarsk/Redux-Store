@@ -97,12 +97,22 @@ function addAPIData(todos,goals) {
     })
    }
  }
+ function handleInitialData(){
+  return(dispatch) => {
+      return  Promise.all([
+        window.API.fetchTodos(),
+        window.API.fetchGoals()
+      ]).then(([ todos, goals ]) => {
+        dispatch(addAPIData(todos,goals))
+      }) 
+   }
+ }
 
 export{
-  addAPIData,
   handleDeleteTodo,
   handleAddTodo,
   handleToggleTodo,
   handleDeleteGoal,
-  handleAddGoal
+  handleAddGoal,
+  handleInitialData
 }

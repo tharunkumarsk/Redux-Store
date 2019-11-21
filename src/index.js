@@ -5,7 +5,7 @@ import "./index.css";
 import Todos from './Components/Todos'
 import Goals from './Components/Goals'
 import {Constants} from './constants'
-import {addAPIData} from './ActionCreators'
+import {handleInitialData} from './ActionCreators'
 import * as API from './API'
 import ReduxThunk from 'redux-thunk'
 
@@ -95,12 +95,8 @@ const store = Redux.createStore(
  class App extends React.Component{
   componentDidMount () {
     const { store } = this.props
-    Promise.all([
-      window.API.fetchTodos(),
-      window.API.fetchGoals()
-    ]).then(([ todos, goals ]) => {
-      store.dispatch(addAPIData(todos,goals))
-    })
+   
+      store.dispatch(handleInitialData())
 
     store.subscribe(() => this.forceUpdate())
    
