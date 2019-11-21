@@ -1,5 +1,4 @@
 import React, { Component,createContext } from 'react'
-import {store} from '../Store/Store'
 
 
 
@@ -9,7 +8,7 @@ export default class Provider extends Component {
  
     render() {
         return (
-          <Context.Provider value={store}>
+          <Context.Provider value={this.props.store}>
             {this.props.children}
           </Context.Provider>
         )
