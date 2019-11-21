@@ -9,7 +9,7 @@ export default class Provider extends Component {
  
     render() {
         return (
-          <Context.Provider value={this.props.store}>
+          <Context.Provider value={store}>
             {this.props.children}
           </Context.Provider>
         )
