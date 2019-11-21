@@ -7,8 +7,10 @@ class Goals extends React.Component{
 
     addGoalItem = (e) => {
         e.preventDefault()
-          this.props.store.dispatch(handleAddGoal(this.input.value))
-          this.input.value = ''
+          this.props.store.dispatch(handleAddGoal(
+            this.input.value,
+            ()=> this.input.value = ''))
+          
       
       }
       removeItem = (goal) => {

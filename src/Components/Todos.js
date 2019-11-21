@@ -6,8 +6,9 @@ class Todos extends React.Component{
     
     addTodoItem = (e) => {
         e.preventDefault()
-        this.props.store.dispatch(handleAddTodo(this.input.value))
-        this.input.value =''
+        this.props.store.dispatch(handleAddTodo(
+          this.input.value,
+          ()=> this.input.value =''))
       }
 
       removeItem = (todo) => {
