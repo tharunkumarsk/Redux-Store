@@ -1,17 +1,9 @@
-import React, { Component } from 'react'
-import {Context} from '../Context-API/Provider'
 import Goals from '../Components/Goals';
+import { connect } from 'react-redux';
 
-class ConnectedGoals extends React.Component {
-  render() {
-    return (
-      <Context.Consumer>
-        {(store) => {
-              const { goals } = store.getState()
-              return <Goals goals={goals} dispatch={store.dispatch} />
-            }}
-      </Context.Consumer>
-    )
-  }
-}
+
+const ConnectedGoals = connect((state) => ({
+  goals: state.goals
+}))(Goals)
+
 export default ConnectedGoals

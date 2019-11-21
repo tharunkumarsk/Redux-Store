@@ -5,19 +5,14 @@ import ConnectedGoals from '../Connected-Components/ConnectedGoals';
 
 class App extends React.Component{
     componentDidMount () {
-      const { store } = this.props
-     
-        store.dispatch(handleInitialData())
-  
-      store.subscribe(() => this.forceUpdate())
-     
+      const { dispatch } = this.props
+       dispatch(handleInitialData())
     }
   
      render(){
-      const { store } = this.props
-      const { todos, goals,loading } = store.getState()
+     
   
-      if (loading === true) {
+      if (this.props.loading === true) {
         return <h3>Loading...</h3>;
       }
             return (<div>

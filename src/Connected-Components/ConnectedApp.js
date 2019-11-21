@@ -1,16 +1,9 @@
-import React, { Component } from 'react'
 import App from '../Components/App'
-import {Context} from '../Context-API/Provider'
+import { connect } from 'react-redux';
 
-class ConnectedApp extends React.Component {
-  render() {
-    return (
-      <Context.Consumer>
-        {(store) => (
-          <App store={store} />
-        )}
-      </Context.Consumer>
-    )
-  }
-}
+
+const ConnectedApp = connect((state) => ({
+  loading: state.loading
+}))(App)
+
 export default ConnectedApp
