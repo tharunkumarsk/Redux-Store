@@ -49,11 +49,12 @@ function addAPIData(todos,goals) {
    }
  }
 
- function handleAddGoal(value){
+ function handleAddGoal(value,emptyInput){
   return(dispatch) => {
     return window.API.saveGoal(value)
     .then((goal)=>{
       dispatch(addGoalAction(goal))
+      emptyInput()
     })
     .catch(() =>{
       alert("There is a problem ...Please try latter !")
@@ -83,11 +84,13 @@ function addAPIData(todos,goals) {
    }
  }
 
- function handleAddTodo(value){
+ function handleAddTodo(value,emptyInput){
    return(dispatch) => {
     return window.API.saveTodo(value)
     .then((todo)=>{
       dispatch(addTodoAction(todo))
+      emptyInput()
+
     })
     .catch(() =>{
       alert("There is a problem ...Please try latter !")
